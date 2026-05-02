@@ -1,0 +1,52 @@
+CREATE TABLE utenti (
+
+   id_utente INT PRIMARY KEY,
+
+   username VARCHAR(50),
+
+   email VARCHAR(100),
+
+   password_hash VARCHAR(255) -- Requisito: Sicurezza e Privacy
+
+);
+
+CREATE TABLE libri (
+
+   id_libro INT PRIMARY KEY,
+
+   titolo VARCHAR(200),
+
+   autore VARCHAR(100),
+
+   categoria VARCHAR(50),
+
+   latitudine DECIMAL(10, 8),   -- Requisito: Campo geospaziale per ricerca area
+
+   longitudine DECIMAL(11, 8),  -- Requisito: Campo geospaziale per ricerca area
+
+   url_copertina TEXT,
+
+   url_miniatura TEXT,          -- Requisito: Gestione miniature
+
+   id_proprietario INT,
+
+   FOREIGN KEY (id_proprietario) REFERENCES utenti(id_utente)
+
+);
+
+ 
+
+ 
+
+-- Esempio di popolamento dati (Requirement 3)
+
+INSERT INTO utenti (id_utente, username, email, password_hash)
+
+VALUES (1, 'MarioRossi', 'mario@email.it', '$2y$10$abcdef...');
+
+ 
+
+INSERT INTO libri (id_libro, titolo, autore, categoria, latitudine, longitudine, id_proprietario)
+
+VALUES (1, 'Storia di Enna', 'G. Alessi', 'Saggistica', 37.567, 14.278, 1);
+
